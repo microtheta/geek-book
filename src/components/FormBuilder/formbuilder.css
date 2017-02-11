@@ -1,0 +1,43 @@
+.canvas.main {
+  min-height: 20rem;
+  width: 70%;
+  padding: 1rem;
+  float: left;
+  background-color: #fbfbfb;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+.canvas .element.box {
+  border: 1px dashed transparent;
+  padding: 0.5rem 1rem;
+  cursor: move;
+  color: black;
+}
+.canvas .element.actions{
+  text-align: right;
+  visibility: hidden;
+}
+.canvas .element.box:hover {
+  border-color: gray;
+  background-color: #fff;
+}
+.canvas .element.box:hover .element.actions {
+  visibility: visible;  
+}
+.canvas .element.box.active {
+  background: lightyellow;
+  border-color: rgb(225, 225, 201);
+}
+
+.propertybox.main {
+  width: 25%;
+  float: right;
+  border: 1px solid #cecece;
+  padding: 0.5rem 1rem;
+  background: lightyellow;
+  border-radius: 4px;
+  box-shadow: 0px 0px 20px -5px lightgray;
+}
+.propertybox .options.space {
+  margin-bottom: 5px; 
+}
