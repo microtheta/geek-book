@@ -1,14 +1,14 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "name": "geek-book",
+  "description": "Geek Book is a collection of rich components",
+  "author": "Thumar Mahesh <thumarmahesh@gmail.com> (http://microtheta.com/)",
   "license": "MIT",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikras/react-redux-universal-hot-example"
+    "url": "https://github.com/thumarmahesh/geek-book"
   },
-  "homepage": "https://github.com/erikras/react-redux-universal-hot-example",
+  "homepage": "https://github.com/thumarmahesh/geek-book",
   "keywords": [
     "react",
     "isomorphic",

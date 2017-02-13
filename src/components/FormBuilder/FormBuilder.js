@@ -3,11 +3,9 @@ import { DragDropContext } from 'react-dnd';
 import update from 'react/lib/update';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
+import './formbuilder.css';
 import FormCanvas from './formcanvas';
 import Box from './box';
-
-import './formbuilder.css';
-
 
 const fakeElement = {
   displayname: '',

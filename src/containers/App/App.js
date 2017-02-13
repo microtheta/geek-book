@@ -75,7 +75,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head} />
-        <Navbar fixedTop className={styles['navbar-default']}>
+        <Navbar fixedTop inverse className={styles['navbar-default']}>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{ color: '#33e0ff' }}>

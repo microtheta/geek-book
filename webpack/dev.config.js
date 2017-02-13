@@ -85,6 +85,9 @@ var webpackConfig = module.exports = {
         loader: 'happypack/loader?id=sass',
         include: [path.resolve(__dirname, '../src')]
       }, {
+        test: /\.css$/,
+        loader: 'happypack/loader?id=css'
+      }, {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader',
         options: {
@@ -108,13 +111,7 @@ var webpackConfig = module.exports = {
           limit: 10240,
           mimetype: 'image/svg+xml'
         }
-      }, {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!less-loader'
-        })
-      }, {
+      },{
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader',
         options: {
@@ -192,6 +189,32 @@ var webpackConfig = module.exports = {
         loader: 'css-loader',
         query: {
           modules: true,
+          importLoaders: 3,
+          sourceMap: true,
+          localIdentName: '[local]___[hash:base64:5]'
+        }
+      }, {
+        loader: 'autoprefixer-loader',
+        query: {
+          browsers: 'last 2 version'
+        }
+      }, {
+        loader: 'resolve-url-loader',
+      }, {
+        loader: 'sass-loader',
+        query: {
+          outputStyle: 'expanded',
+          sourceMap: true
+        }
+      }
+    ]),
+    helpers.createHappyPlugin('css', [
+      {
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader',
+        query: {
+          modules: false,
           importLoaders: 3,
           sourceMap: true,
           localIdentName: '[local]___[hash:base64:5]'

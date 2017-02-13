@@ -112,10 +112,6 @@ npm run build
 npm run start
 ```
 
-## Demo
-
-A demonstration of this app can be seen [running on heroku](https://react-hot-example.herokuapp.com/), which is a deployment of the [heroku branch](https://github.com/bertho-zero/react-redux-universal-hot-example/tree/heroku).
-
 ## Explanation
 
 What initially gets run is `bin/server.js`, which does little more than enable ES6 and ES7 awesomeness in the server-side node code. It then initiates `server.js`. In `server.js` we proxy any requests to `/api/*` to the API server, running at `localhost:3030`. All the data fetching calls from the client go to `/api/*`. Aside from serving the favicon and static content from `/static`, the only thing `server.js` does is initiate delegate rendering to `react-router`. At the bottom of `server.js`, we listen to port `3000` and initiate the API server.
@@ -272,14 +268,3 @@ Although this isn't a library, we recently started versioning to make it easier 
 ## Contributing
 
 I am more than happy to accept external contributions to the project in the form of feedback, bug reports and even better - pull requests :) 
-
-If you would like to submit a pull request, please make an effort to follow the guide in [CONTRIBUTING.md](CONTRIBUTING.md). 
- 
----
-Thanks for checking this out.
-
-Created by:
-– Erik Rasmussen, [@erikras](https://twitter.com/erikras)
-
-Maintened by:
-– Berthommier Kévin, [@bertho-zero](https://github.com/bertho-zero)

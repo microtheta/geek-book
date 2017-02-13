@@ -1,9 +1,10 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "repository": "https://github.com/erikras/react-redux-universal-hot-example",
+  "name": "Geek Book",
+  "description": "Geek Book is a collection of rich components",
+  "repository": "https://github.com/thumarmahesh/geek-book",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": [
+    "geek book",
     "react",
     "isomorphic",
     "universal",
