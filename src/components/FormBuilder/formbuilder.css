@@ -1,6 +1,6 @@
 .canvas.main {
   min-height: 20rem;
-  width: 70%;
+  width: 73%;
   padding: 1rem;
   float: left;
   background-color: #fbfbfb;
@@ -37,6 +37,14 @@
   background: lightyellow;
   border-radius: 4px;
   box-shadow: 0px 0px 20px -5px lightgray;
+}
+.propertybox .close {
+  margin-top: -37px;
+  margin-right: -21px;
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 0px 4px;
+  outline: none !important;
 }
 .propertybox .options.space {
   margin-bottom: 5px; 

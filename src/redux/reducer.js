@@ -5,6 +5,7 @@ import { reducer as form } from 'redux-form';
 import auth from './modules/auth';
 import notifs from './modules/notifs';
 import counter from './modules/counter';
+import formbuilder from './modules/formbuilder';
 import info from './modules/info';
 // import widgets from './modules/widgets';
 // import survey from './modules/survey';
@@ -16,6 +17,7 @@ export default function createReducers(asyncReducers) {
     reduxAsyncConnect,
     online: (v = true) => v,
     form,
+    formbuilder,
     notifs,
     auth,
     counter: multireducer({

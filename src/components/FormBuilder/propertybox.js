@@ -6,7 +6,8 @@ class PropBoxComponent extends Component {
 
   static propTypes = {
     element: PropTypes.any,
-    onPropertyChage: PropTypes.func
+    onPropertyChage: PropTypes.func,
+    closePropBox: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -98,6 +99,12 @@ class PropBoxComponent extends Component {
     const { formdata } = this.state;
     return (
       <div className="column">
+        <button
+          type="button"
+          onClick={this.props.closePropBox}
+          className="close pull-right" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <div className="ui form">
           <div className="field">
             <h3>

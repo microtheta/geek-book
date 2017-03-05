@@ -23,14 +23,14 @@ export default class FormCanvas extends Component {
     isOver: PropTypes.bool.isRequired,
     canDrop: PropTypes.bool.isRequired,
     formState: PropTypes.array,
-    selectedElementId: PropTypes.number,
+    selectedElementId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]).isRequired,
     onUpdate: PropTypes.func,
-    onRemove: PropTypes.func
+    onRemove: PropTypes.func,
+    onPropBox: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     formState: [],
-    selectedElementId: -1,
     onUpdate: () => {},
     onRemove: () => {}
   }
@@ -42,9 +42,11 @@ export default class FormCanvas extends Component {
     this.handlePropBox = this.handlePropBox.bind(this);
     this.handlePropUpdate = this.handlePropUpdate.bind(this);
     this.toggleSize = this.toggleSize.bind(this);
+    this.closePropBox = this.closePropBox.bind(this);
+    const currentindex = _.findIndex(this.props.formState, { id: this.props.selectedElementId });
     this.state = {
       cards: this.props.formState,
-      currentCard: this.props.formState[this.props.selectedElementId]
+      currentCard: this.props.formState[currentindex]
     };
   }
 
@@ -77,14 +79,17 @@ export default class FormCanvas extends Component {
   }
 
   removeBox(index) {
-    this.setState({ currentCard: '' });
     this.props.onRemove(index);
+  }
+
+  closePropBox() {
+    this.props.onPropBox(false);
   }
 
   handlePropBox(index) {
     const { cards } = this.state;
     const propsCard = cards[index];
-    this.setState({ currentCard: propsCard });
+    this.props.onPropBox(propsCard.id);
   }
 
   toggleSize(index) {
@@ -162,7 +167,9 @@ export default class FormCanvas extends Component {
         {
           this.state.currentCard ?
             <div className="propertybox main">
-              <PropertyBox element={this.state.currentCard} onPropertyChage={this.handlePropUpdate} />
+              <PropertyBox
+                closePropBox={this.closePropBox}
+                element={this.state.currentCard} onPropertyChage={this.handlePropUpdate} />
             </div>
           : null
         }

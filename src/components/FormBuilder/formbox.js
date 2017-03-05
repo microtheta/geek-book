@@ -105,7 +105,6 @@ export default class Card extends Component {
 
     return connectDragSource(connectDropTarget(
       <div
-        onClick={showProps}
         style={{ opacity, ...fakeBoxStyle }} className={`element box ${className}`}>
         <RenderElement elementObj={boxdata} />
         <div className="btn-toolbar">
