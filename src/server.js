@@ -13,16 +13,15 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { Provider } from 'react-redux';
-import config from 'config';
 import createStore from 'redux/create';
 import ApiClient from 'helpers/ApiClient';
 import Html from 'helpers/Html';
 import getRoutes from 'routes';
-import { exposeInitialRequest } from 'app';
+import config from '../config/client.config';
 
 process.on('unhandledRejection', error => console.error(error));
 
-const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
+const targetUrl = `http://${config.apiHost}:${config.apiPort}/api`;
 const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
@@ -47,14 +46,6 @@ app.use((req, res, next) => {
 // Proxy to API server
 app.use('/api', (req, res) => {
   proxy.web(req, res, { target: targetUrl });
-});
-
-app.use('/ws', (req, res) => {
-  proxy.web(req, res, { target: `${targetUrl}/ws` });
-});
-
-server.on('upgrade', (req, socket, head) => {
-  proxy.ws(req, socket, head);
 });
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
@@ -89,9 +80,6 @@ app.use((req, res) => {
   if (__DISABLE_SSR__) {
     return hydrateOnClient();
   }
-
-  // Re-configure restApp for apply client cookies
-  exposeInitialRequest(req);
 
   match({
     history,

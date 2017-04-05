@@ -11,9 +11,9 @@ import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { Notifs } from 'components';
 import { push } from 'react-router-redux';
-import config from 'config';
 import { asyncConnect } from 'redux-connect';
 import 'todc-bootstrap/dist/css/todc-bootstrap.css';
+import config from '../../../config/client.config';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => {

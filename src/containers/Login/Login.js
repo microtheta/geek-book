@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import LoginForm from 'components/LoginForm/LoginForm';
-import FacebookLogin from 'components/FacebookLogin/FacebookLogin';
+// import FacebookLogin from 'components/FacebookLogin/FacebookLogin';
 import * as authActions from 'redux/modules/auth';
 import * as notifActions from 'redux/modules/notifs';
 
@@ -39,13 +39,16 @@ export default class Login extends Component {
       });
   };
 
-  login = data => this.props.login('local', data).then(this.successLogin);
+  login = data => this.props.login(data).then(this.successLogin);
 
   successLogin = data => {
     this.props.notifSend({
-      message: 'You\'r logged !',
+      message: 'You\'r logged in!',
       kind: 'success',
       dismissAfter: 2000
+    });
+    this.context.router.push({
+      pathname: '/',
     });
     return data;
   };
@@ -64,13 +67,13 @@ export default class Login extends Component {
         {!user && <div>
           <LoginForm onSubmit={this.login} />
           <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="635147529978862"
-            /* autoLoad={true} */
+            autoLoad={true}
             fields="name,email,picture"
             onLogin={this.onFacebookLogin}
             component={this.FacebookLoginButton}
-          />
+           /> */ }
         </div>
         }
         {user && <div>

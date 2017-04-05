@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CounterButton, GithubButton } from 'components';
-import config from 'config';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import config from '../../../config/client.config';
 
 @connect(
   state => ({

@@ -21,6 +21,7 @@ export default function reducer(state = initialState, action = {}) {
       const fakeElem = state.form[fakeIndex];
       return {
         ...state,
+        selectedElement: false,
         form: [fakeElem]
       };
 

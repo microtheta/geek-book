@@ -1,4 +1,4 @@
-import app, { restApp, socket } from 'app';
+// import app, { restApp, socket } from 'app';
 import { SubmissionError } from 'redux-form';
 import cookie from 'js-cookie';
 
@@ -15,7 +15,7 @@ const LOGOUT = 'redux-example/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
 
-const userService = restApp.service('users');
+// const userService = restApp.service('users');
 
 const initialState = {
   loaded: false
@@ -114,8 +114,8 @@ function setToken(client, response) {
   const { accessToken } = response;
 
   // set manually the JWT for both instances of feathers/client
-  app.set('accessToken', accessToken);
-  restApp.set('accessToken', accessToken);
+  // app.set('accessToken', accessToken);
+  // restApp.set('accessToken', accessToken);
   client.setJwtToken(accessToken);
 
   return response;
@@ -123,7 +123,7 @@ function setToken(client, response) {
 
 function setCookie(response) {
   const options = response.expires ? { expires: response.expires / (60 * 60 * 24 * 1000) } : undefined;
-  cookie.set('feathers-jwt', app.get('accessToken'), options);
+  // cookie.set('feathers-jwt', app.get('accessToken'), options);
   return response;
 }
 
@@ -138,18 +138,25 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: () => restApp.authenticate()
+    promise: (client) => client.get()  // restApp.authenticate()
   };
 }
 
 export function register(data) {
   return {
     types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
-    promise: () => userService.create(data).catch(catchValidation)
+    promise: (client) => client.post('/user/signup', { data })
   };
 }
 
-export function login(strategy, data, validation = true) {
+export function login(data) {
+  return {
+    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    promise: (client) => client.post('/login', { data })
+  };
+}
+
+export function loginOld(strategy, data, validation = true) {
   const socketId = socket.io.engine.id;
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],

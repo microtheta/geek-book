@@ -12,7 +12,6 @@ import { AppContainer as HotEnabler } from 'react-hot-loader';
 import { useScroll } from 'react-router-scroll';
 import { getStoredState } from 'redux-persist';
 import localForage from 'localforage';
-// import { socket } from 'app';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import getRoutes from './routes';
@@ -26,27 +25,9 @@ const offlinePersistConfig = {
 const client = new ApiClient();
 const dest = document.getElementById('content');
 
-/* function initSocket() {
-  socket.on('news', data => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data from client' });
-  });
-  socket.on('msg', data => {
-    console.log(data);
-  });
-
-  return socket;
-}
-
-global.socket = initSocket();*/
 
 Promise.all([window.__data ? true : isOnline(), getStoredState(offlinePersistConfig)])
   .then(([online, storedData]) => {
-    // if (online) socket.open();
-
-    // if your server doesn't authenticate socket connexion by cookie
-    // if (online) app.authenticate().catch(() => null);
-
     const data = !online ? { ...storedData, ...window.__data, online } : { ...window.__data, online };
     const store = createStore(browserHistory, client, data, offlinePersistConfig);
     const history = syncHistoryWithStore(browserHistory, store);

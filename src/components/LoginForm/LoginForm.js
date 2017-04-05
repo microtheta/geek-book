@@ -16,7 +16,7 @@ export default class LoginForm extends Component {
       <label htmlFor={input.name} className="col-sm-2">{label}</label>
       <div className="col-sm-10">
         <input {...input} type={type} className="form-control" />
-        {error && touched && <span className="glyphicon glyphicon-remove form-control-feedback"></span>}
+        {/* error && touched && <span className="glyphicon glyphicon-remove form-control-feedback"></span> */}
         {error && touched && <div className="text-danger"><strong>{error}</strong></div>}
       </div>
     </div>;

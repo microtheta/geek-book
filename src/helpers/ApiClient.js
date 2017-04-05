@@ -1,16 +1,17 @@
 import superagent from 'superagent';
-import config from '../config';
+import config from '../../config/client.config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
-  const adjustedPath = path[0] !== '/' ? `/${path}` : path;
+  let adjustedPath = path[0] !== '/' ? `/${path}` : path;
+  adjustedPath = `/api${adjustedPath}`;
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
     return `http://${config.apiHost}:${config.apiPort + adjustedPath}`;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
-  return `/api${adjustedPath}`;
+  return adjustedPath;
 }
 
 export default class ApiClient {
